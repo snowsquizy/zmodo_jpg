@@ -15,9 +15,9 @@ host=XX.XX.XX.XX
 
 date=$(date +"%Y-%m-%d_%H%M")
 
-directory=/home/user
+directory=/home/user/
 
-echo -e '\x55\x55\xaa\xaa\x00\x00\x00\x00\x00\x00\x00\x50' | netcat -w 2 $host 8000 |  ffmpeg -i pipe:0 -y -q:v 9 -s 1280x720 -vframes 1 -r 1 $directory+$date.jpg 
+echo -e '\x55\x55\xaa\xaa\x00\x00\x00\x00\x00\x00\x00\x50' | nc ${host} 8000 | ffmpeg -i pipe:0 -y -q:v 9 -s 1280x720 -vframes 1 -r 1 ${directory}${date}.jpg 
 
 
 #### This currently utilises ffmpeg however avconv usage is also possible
